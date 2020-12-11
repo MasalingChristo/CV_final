@@ -1,0 +1,239 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+
+img{
+    width: 100%;
+}
+
+body{
+    background-color: #addd;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 50px;
+}
+
+/* container */
+.container {
+    display: grid;
+    gap: 10px;
+}
+
+/* Header */
+.header {
+    display: grid;
+    grid-template-areas: 
+    'hero hero feature-1'
+    'hero hero feature-2';
+
+}
+
+.hero {
+    grid-area: hero;
+    min-height: 600px;
+    /* min-width: 420px;  */
+    background-image: url(img/for\ design.jpg);
+    background-size: cover;
+     background-position: center; /*bisa dihapus nanti*/
+    padding: 50px;
+}
+
+.hero > *{
+    display: none;
+}
+
+.features{
+    background-color: #000;
+    color: white;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+.feature-1{
+    grid-area: feature-1;
+    background-image: url(img/logoFIK.jpeg);
+    background-size: cover;
+}
+
+.feature-1 h4, .feature-1 p {
+    display: none;
+}
+
+.feature-2{
+    grid-area: feature-2;
+    background-image: url(img/logo\ unklab.png);
+    background-size: cover;
+}
+
+.feature-2 h4, .feature-2 p{
+    display: none;
+}
+
+/* navigation */
+.menu {
+    order:-1;
+    display: grid;
+    grid-template-columns : 1fr 2fr;
+    align-items: center;
+    
+}
+
+.menu .brand{
+    font-size: 1.3em;
+    color: #333;
+}
+
+.menu ul{
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 5px;
+    
+}
+
+.menu a{
+    display: block;
+    background-color: rgb(223, 243, 40);
+    color: #333;
+    text-decoration: none;
+    text-align: center;
+    padding: 10px;
+}
+/* menu hamburger */
+
+.menu-toggle{
+
+    display: none;
+    flex-direction: column;
+    height: 20px;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+
+}
+
+.menu-toggle input{
+    position: absolute;
+    width: 40px;
+    height: 28px;
+    left: -6px;
+    top: -6px;
+    opacity: 0;
+    cursor:pointer; /*mungkin bisa dibuat di javaScript*/
+    z-index: 2;
+}
+
+.menu-toggle span{
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color:#000;
+    border-radius: 3px;
+    transition: all 0.5s;
+}
+
+
+/* Animation for hamburger */
+.menu-toggle span:nth-child(2)
+{
+    /* background-color:red; */
+    transform-origin: 0 0;
+
+}
+
+.menu-toggle span:nth-child(4)
+{
+    /* background-color:red; */
+    transform-origin: 0 100%;
+}
+
+
+.menu-toggle input:checked ~ span:nth-child(2)
+{
+    transform: rotate(45deg) translate(-1px, -1px);
+}
+.menu-toggle input:checked ~ span:nth-child(4)
+{
+    transform: rotate(-45deg) translate(-1px, 0);
+}
+.menu-toggle input:checked ~ span:nth-child(3)
+{
+    transform: scale(0);
+}
+
+/* services */
+.services{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr) );
+}
+.service{
+    background-color: rgb(236, 236, 118);
+}
+
+
+/* responsive breakPoint default */
+@media screen and (max-width: 1024px){
+    .menu{
+        order: inherit;
+        grid-template-columns: 1fr;
+    }
+
+    .menu .brand{
+        display: none;
+    }
+
+}
+
+/* responsive tablet */
+@media screen and (max-width: 768px){
+    .menu{
+        order: -1;
+        justify-items: end;
+    }
+    .menu-toggle{
+        display: flex;
+    }
+    .menu ul {
+
+        display: flex;
+        position: absolute;
+        right: 0;
+        top: 0;
+        background-color: #000;
+        width: 100%;
+        height: 100vh;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(67, 185, 224);
+        z-index: 1;
+        transform: translateY(-100%);
+        transition: all 1s;
+        opacity: 0;
+
+    }
+    nav ul.slide{
+	opacity: 1;
+
+        transform: translateY(0);
+        
+
+    }
+
+}
+
+/* responsive mobile */
+
+@media screen and (max-width: 500px){
+    .header{
+        grid-template-areas:
+        'hero'
+        'feature-1'
+        'feature-2';
+    }
+
+}
